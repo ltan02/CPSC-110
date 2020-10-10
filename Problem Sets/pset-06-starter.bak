@@ -1,0 +1,112 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-intermediate-reader.ss" "lang")((modname pset-06-starter) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+;; DO NOT PUT ANYTHING PERSONALLY IDENTIFYING BEYOND YOUR CWL IN THIS FILE.
+;; YOUR CWLs WILL BE SUFFICIENT TO IDENTIFY YOU AND, IF YOU HAVE ONE, YOUR 
+;; PARTNER.
+;;
+(require spd/tags)
+
+(@assignment pset-06); Do not edit or remove this tag
+(@cwl ??? ???)       ;Replace ??? with your cwl,
+;;                   ;second ??? is replaced with partner cwl if you have one
+
+
+(@problem 1)
+;; Below is the start of a data definition called Course that represents limited
+;; information about UBC courses.  Below there are only two example data.  
+;; Please complete this definition by adding constants C110, C213, C313 and C317
+;; which are representations of the descendent tree for 110, 213, 313 and 317.  
+;; You can find the information you need at
+;;  https://cs110.students.cs.ubc.ca/psets/pset-06-image.png
+;;
+;; NOTE 1: Use the information in the image above, rather than any other source.
+;;         We are significantly simplying the information.
+;;
+;; NOTE 2: Do this very carefully, the autograder wants to see correct results
+;;         from the functions you design to operate on this data.
+;;
+;; NOTE 3: The tree you will make for C110 will be a bit odd because 210 has 110
+;;         as a pre-req, and both 213 and 221 have 210 as a pre-req, and313 has
+;;         213 AND 221 as a pre-req, and 317 has 213 AND 221 as a pre-req. As a
+;;         result, 313 and 317 will both show up twice in your descendent tree
+;          for C110. This is okay for this problem set.
+;; NOTE 4: Expect this step of the problem set to take you some time.
+
+
+(@htdd Course)
+(define-struct course (number credits dependents))
+;; Course is (make-course Natural Natural ListOfCourse)
+;; interp. a course with a course number,
+;;         the number of credits the course is worth, and a
+;;         list of courses that list this course as a direct pre-requisite
+
+
+(@htdd ListOfCourse)
+;; ListOfCourse is one of:
+;; - empty
+;; - (cons Course ListOfCourse)
+;; interp. a list of courses
+
+(define LOC0 empty)
+(define C100 (make-course 100 3 LOC0))
+
+(define (fn-for-course c)
+  (... (course-number c)
+       (course-credits c)
+       (fn-for-loc (course-dependents c))))
+
+(define (fn-for-loc loc)
+  (cond [(empty? loc) (...)]
+        [else
+         (... (fn-for-course (first loc))
+              (fn-for-loc (rest loc)))]))
+
+(@problem 2)
+;;
+;; Design a function that produces the list of all the course numbers in the
+;; course's tree including the given course's number.
+;;
+;; Your @htdf tag and the rest of the design MUST have the definition for
+;; the function that takes Course as an argument first. The function that
+;; operates on a list must be second.  Marks will only be rewarded for
+;; solutions that order the design this way.
+;;
+
+
+
+(@problem 3)
+;;
+;; Design a function that takes two arguments: a Course and a Natural, in that
+;; order. It produces the list of courses in the tree that are worth that
+;; many credits or more.
+;;
+;; Your @htdf tag and the rest of the design MUST have the definition for
+;; the function that takes Course as an argument first. The function that
+;; operates on a list must be second.  Marks will only be rewarded for
+;; solutions that order the design this way.
+;;
+
+
+(@problem 4)
+;;
+;; Design a function that produces the largest course number in the tree.
+;;
+;; Your @htdf tag and the rest of the design MUST have the definition for
+;; the function that takes Course as an argument first. The function that
+;; operates on a list must be second.  Marks will only be rewarded for
+;; solutions that order the design this way.
+;;
+
+(@problem 5)
+;;
+;; Design a function that takes two arguments: a Course and a Natural, in that
+;; order. It produces the course in the tree with that course number. If it
+;; can't find a course in the given tree with that course number, it signals
+;; failure by producing false.
+;;
+;; Your @htdf tag and the rest of the design MUST have the definition for
+;; the function that takes Course as an argument first. The function that
+;; operates on a list must be second.  Marks will only be rewarded for
+;; solutions that order the design this way.
+;;

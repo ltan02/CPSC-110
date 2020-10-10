@@ -1,0 +1,45 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname lec02-starter) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #t)))
+(require 2htdp/image)
+(require spd/tags)
+
+
+(@problem 1)
+;;
+;; Design a function, called topple, that takes an image and rotates it 
+;; by 90 degrees.
+;;
+
+
+
+
+(@problem 2)
+;;
+;; Design a function that consumes the name of something and produces a
+;; "checkbox line" image that allows someone to check off that item.  For 
+;; example (checkbox-line "apples") would produce an image with a small
+;; check box next to the word apples.
+;;
+
+
+
+(@problem 3)
+;;
+;; Design a function, that consumes an image and determines whether it is tall.
+;;
+
+
+
+(@problem 4)
+;;
+;; Design a function, called image>, that takes two images and determines 
+;; whether the first is larger than the second.
+;;
+
+
+
+
+
+
+

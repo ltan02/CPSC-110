@@ -1,0 +1,36 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-advanced-reader.ss" "lang")((modname replicate-elm-starter) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+(require spd/tags)
+
+(@assignment accumulators-p2)
+(@cwl ??? ???)
+
+(@problem 1)
+;; Design a function that consumes a list of elements and a natural n, and
+;; produces a list where each element is replicated n times. 
+;;
+;; (replicate-elm (list "a" "b" "c") 2) should produce
+;; (list "a" "a" "b" "b" "c" "c")
+
+(@htdf replicate-elm)
+(@signature (listof X) Natural -> (listof X))
+;; produce a list where each element is replicated n times
+(check-expect (replicate-elm empty 2) empty)
+(check-expect (replicate-elm (list "a" "b" "c") 2)
+              (list "a" "a" "b" "b" "c" "c"))
+(check-expect (replicate-elm (list #t #f) 3)
+              (list #t #t #t #f #f #f))
+
+;(define (replicate-elm lox n) lox) ;stub
+
+(@template (listof X) encapsulated accumulator)
+(define (replicate-elm lox0 n)
+  ;; cur is Natural ; how many more times it needs to repeat the current element
+  (local [(define (solve lox cur)
+            (cond [(empty? lox) empty]
+                  [else
+                   (if (zero? cur)
+                       (solve (rest lox) n)
+                       (cons (first lox) (solve lox (sub1 cur))))]))]
+    (solve lox0 n)))
